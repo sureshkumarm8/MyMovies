@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group
+    android:id="@+id/sort"
+    android:checkableBehavior="single">
+    <item
+        android:id="@+id/allmovies"
+        android:title="All Movies"
+        android:checked="true"/>
+    <item
+        android:id="@+id/popular"
+        android:title="Sort By Popular"/>
+    <item
+        android:id="@+id/rated"
+        android:title="Sort By Ratings"/>
+</group>
+</menu>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/wood"
+    android:orientation="vertical"
+    tools:context="com.sureit.mymovies.MovieDetails">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tVdescription"
+        android:layout_alignTop="@+id/posterImageView"
+        android:textSize="26dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        tools:text="Movie Title"
+        android:layout_alignRight="@+id/tVdescription"
+        tools:ignore="UnknownId" />
+
+    <ImageView
+        android:id="@+id/posterImageView"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/tVdescription"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/avatar1"
+        android:layout_alignLeft="@+id/tVdescription" />
+
+
+    <TextView
+        android:id="@+id/tVdescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tVdescriptionTitle"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="15sp"
+        android:gravity="left"
+        android:text="description"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tVdescriptionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="left"
+        android:text="Description :"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tVRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/titleTextView"
+        android:layout_marginTop="163dp"
+        android:text="Release Date : "
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/titleTextView" />
+
+    <TextView
+        android:id="@+id/tVRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/posterImageView"
+        android:layout_alignStart="@+id/titleTextView"
+        android:text="Ratings : "
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tVreleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tVRelease"
+        android:layout_toEndOf="@+id/tVRelease"
+        android:layout_toRightOf="@+id/tVRelease"
+        android:text="0.0"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tVRatVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tVRatings"
+        android:layout_toEndOf="@+id/tVRelease"
+        android:text="0.0"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/tVRelease" />
+
+</RelativeLayout>
