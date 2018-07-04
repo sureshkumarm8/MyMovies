@@ -3,17 +3,17 @@ package com.sureit.mymovies;
 public class MovieList {
 
     private String title;
-    private String poster_url;
+    private String posterUrl;
     private String description;
     private String vote_average;
-    private String release_date;
+    private String releaseDate;
 
     public String getTitle() {
         return title;
     }
 
-    public String getPoster_url() {
-        return poster_url;
+    public String getPosterUrl() {
+        return posterUrl;
     }
 
     public String getDescription() {
@@ -24,14 +24,14 @@ public class MovieList {
         return vote_average;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public MovieList(String title, String description, String poster_url, String vote_average, String release_date) {
+    public MovieList(String title, String description, String posterUrl, String vote_average, String releaseDate) {
         this.title = title;
-        this.poster_url = poster_url;
+        this.posterUrl = posterUrl;
         this.description = description;
         this.vote_average=vote_average;
-        this.release_date=release_date;
+        this.releaseDate = releaseDate;
     }}

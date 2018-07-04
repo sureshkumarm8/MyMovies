@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-public class MovieDetails extends AppCompatActivity {
+public class MovieDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +18,8 @@ public class MovieDetails extends AppCompatActivity {
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         TextView description = (TextView) findViewById(R.id.tVdescription);
-        TextView releaseTV=findViewById(R.id.tVreleaseDate);
-        TextView ratingTV= findViewById(R.id.tVRatVal);
+        TextView releaseTV= (TextView) findViewById(R.id.tVreleaseDate);
+        TextView ratingTV= (TextView) findViewById(R.id.tVRatVal);
 
 
         Intent intent = getIntent();

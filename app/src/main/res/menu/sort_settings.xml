@@ -3,11 +3,9 @@
 <group
     android:id="@+id/sort"
     android:checkableBehavior="single">
+
     <item
-        android:id="@+id/allmovies"
-        android:title="All Movies"
-        android:checked="true"/>
-    <item
+        android:checked="true"
         android:id="@+id/popular"
         android:title="Sort By Popular"/>
     <item

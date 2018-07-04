@@ -52,19 +52,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         final MovieList developersList = movieLists.get(position);
 
         Picasso.with(context)
-                .load("https://image.tmdb.org/t/p/w185/"+(developersList.getPoster_url()))
+                .load("https://image.tmdb.org/t/p/w185/"+(developersList.getPosterUrl()))
                 .into(holder.poster_url);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MovieList movieList1 = movieLists.get(position);
-                Intent skipIntent = new Intent(v.getContext(), MovieDetails.class);
+                Intent skipIntent = new Intent(v.getContext(), MovieDetailsActivity.class);
                 skipIntent.putExtra(KEY_NAME, movieList1.getTitle());
                 skipIntent.putExtra(KEY_DESCRIPTION, movieList1.getDescription());
-                skipIntent.putExtra(KEY_IMAGE,"https://image.tmdb.org/t/p/w185/"+ movieList1.getPoster_url());
+                skipIntent.putExtra(KEY_IMAGE,"https://image.tmdb.org/t/p/w185/"+ movieList1.getPosterUrl());
                 skipIntent.putExtra(KEY_VOTE_AVERAGE,movieList1.getVote_average());
-                skipIntent.putExtra(KEY_RELEASE_DATE,movieList1.getRelease_date());
+                skipIntent.putExtra(KEY_RELEASE_DATE,movieList1.getReleaseDate());
                 v.getContext().startActivity(skipIntent);
             }
         });

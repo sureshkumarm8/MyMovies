@@ -1,11 +1,11 @@
 package com.sureit.mymovies;
 
 import android.app.ProgressDialog;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,10 +27,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL_MOVIE = "https://api.themoviedb.org/3/discover/movie?";
-    private static final String API_KEY = "d030f9aa381a82c96ecda4ad31fb6af5";
-    private static final String POPULARITY = "popularity.desc";
-    private static final String RATING = "vote_average.desc";
+    private static final String BASE_URL_MOVIE = "https://api.themoviedb.org/3/discover/movie?api_key=";
+    private static final String POPULAR_MOVIES_URL = "https://api.themoviedb.org/3/movie/popular?api_key=";
+    private static final String TOP_RATED_MOVIES_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
+
+    private static final String API_KEY = BuildConfig.MovieSecAPIKEY;
+    private static final String LOG_TAG = "MainActivity";
 
 
     private RecyclerView recyclerView;
@@ -48,9 +50,10 @@ public class MainActivity extends AppCompatActivity {
         movieLists = new ArrayList<>();
 
         try {
-            loadUrlData(null);
+            loadUrlData(BASE_URL_MOVIE);
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            Log.e(LOG_TAG, e.getMessage(), e);
         }
     }
 
@@ -64,23 +67,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.allmovies:
-                item.setChecked(true);
-                try {
-                    movieLists.clear();
-                    loadUrlData(null);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                return true;
 
             case R.id.popular:
                 item.setChecked(true);
                 try {
                     movieLists.clear();
-                    loadUrlData(POPULARITY);
+                    loadUrlData(POPULAR_MOVIES_URL);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
+                    Log.e(LOG_TAG, e.getMessage(), e);
                 }
                 return true;
 
@@ -88,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 try {
                     movieLists.clear();
-                    loadUrlData(RATING);
+                    loadUrlData(TOP_RATED_MOVIES_URL);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
+                    Log.e(LOG_TAG, e.getMessage(), e);
                 }
                 return true;
 
@@ -99,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadUrlData(String orderBy) throws MalformedURLException {
+    private void loadUrlData(String movieurl) throws MalformedURLException {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                buildUri(orderBy), new Response.Listener<String>() {
+                movieurl+API_KEY , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -132,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
-
                     e.printStackTrace();
+                    Log.e(LOG_TAG, e.getMessage(), e);
                 }
             }
         }, new Response.ErrorListener() {
@@ -149,20 +145,4 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public String buildUri(String sortby){
-
-        final String QUERY_SORT_BY = "sort_by";
-        final String QUERY_APPKEY = "api_key";
-        final String QUERY_VOTE_COUNT = "vote_count.gte";
-        final String PARAM_MIN_VOTES = "50";
-
-        Uri builtUri = Uri.parse(BASE_URL_MOVIE)
-                .buildUpon()
-                .appendQueryParameter(QUERY_SORT_BY, sortby)
-                .appendQueryParameter(QUERY_VOTE_COUNT, PARAM_MIN_VOTES)
-                .appendQueryParameter(QUERY_APPKEY,API_KEY)
-                .build();
-        return builtUri.toString();
-
-    }
 }
