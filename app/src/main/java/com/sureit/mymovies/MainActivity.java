@@ -25,6 +25,8 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import am.appwise.components.ni.NoInternetDialog;
+
 import static com.sureit.mymovies.Constants.API_KEY;
 import static com.sureit.mymovies.Constants.BASE_URL_MOVIE;
 import static com.sureit.mymovies.Constants.POPULAR_MOVIES_URL;
@@ -33,7 +35,7 @@ import static com.sureit.mymovies.Constants.TOP_RATED_MOVIES_URL;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "MainActivity";
-
+    NoInternetDialog noInternetDialog;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         movieLists = new ArrayList<>();
-
+        noInternetDialog = new NoInternetDialog.Builder(this).build();
         try {
             loadUrlData(BASE_URL_MOVIE);
         } catch (MalformedURLException e) {
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.popular:
                 item.setChecked(true);
                 try {
+                    noInternetDialog = new NoInternetDialog.Builder(this).build();
                     movieLists.clear();
                     loadUrlData(POPULAR_MOVIES_URL);
                 } catch (MalformedURLException e) {
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rated:
                 item.setChecked(true);
                 try {
+                    noInternetDialog = new NoInternetDialog.Builder(this).build();
                     movieLists.clear();
                     loadUrlData(TOP_RATED_MOVIES_URL);
                 } catch (MalformedURLException e) {
@@ -145,5 +149,9 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        noInternetDialog.onDestroy();
+    }
 }
