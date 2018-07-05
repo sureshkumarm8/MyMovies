@@ -25,13 +25,13 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sureit.mymovies.Constants.API_KEY;
+import static com.sureit.mymovies.Constants.BASE_URL_MOVIE;
+import static com.sureit.mymovies.Constants.POPULAR_MOVIES_URL;
+import static com.sureit.mymovies.Constants.TOP_RATED_MOVIES_URL;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL_MOVIE = "https://api.themoviedb.org/3/discover/movie?api_key=";
-    private static final String POPULAR_MOVIES_URL = "https://api.themoviedb.org/3/movie/popular?api_key=";
-    private static final String TOP_RATED_MOVIES_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
-
-    private static final String API_KEY = BuildConfig.MovieSecAPIKEY;
     private static final String LOG_TAG = "MainActivity";
 
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                progressDialog.dismiss();
+
 
                 try {
 
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Log.e(LOG_TAG, e.getMessage(), e);
                 }
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
