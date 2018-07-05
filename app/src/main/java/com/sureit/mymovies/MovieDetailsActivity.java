@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-public class MovieDetailsActivity extends AppCompatActivity {
+import am.appwise.components.ni.NoInternetDialog;
 
+public class MovieDetailsActivity extends AppCompatActivity {
+    NoInternetDialog noInternetDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     public void setupUI(){
-
+        noInternetDialog = new NoInternetDialog.Builder(this).build();
         ImageView posterImageView = (ImageView) findViewById(R.id.posterImageView);
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
         TextView description = (TextView) findViewById(R.id.tVdescription);
@@ -55,5 +57,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         description.setText(descriptionText);
 
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        noInternetDialog.onDestroy();
     }
 }
